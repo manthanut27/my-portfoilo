@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manthan Utekar - Portfolio Hero (Mobile)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500&amp;family=Space+Mono&amp;family=Syne:wght@800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              'fizzi-yellow': '#FDE047',
+              'orange-red': '#FE6334',
+              'navy': '#0c4a6e',
+              'lime': '#D9F99D',
+              'cyan': '#C0F0F5',
+              'pink': '#FFA6B5',
+              'lavender': '#E9CFF6',
+              'green': '#CBEF9A',
+            },
+            borderRadius: {
+              "DEFAULT": "0.5rem",
+              "lg": "1rem",
+              "xl": "1.5rem",
+              "full": "9999px"
+            },
+            fontFamily: {
+              "headline": ["Syne", "sans-serif"],
+              "display": ["Syne", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Space Mono", "monospace"]
+            },
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .typewriter {
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: .15em;
+        animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+      }
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: #0c4a6e; }
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-fizzi-yellow text-navy font-body antialiased min-h-screen flex flex-col relative w-full max-w-[375px] mx-auto overflow-x-hidden">
+<!-- Scroll Progress Bar -->
+<div class="fixed top-0 left-0 h-[3px] bg-orange-red w-1/3 z-50"></div>
+<!-- TopNavBar Shell (Adapted for Mobile Hero focus, based on JSON anchor) -->
+<nav class="w-full flex justify-between items-center px-6 py-5 z-40 relative">
+<div class="text-2xl font-black text-navy font-headline tracking-tighter">MU</div>
+<button class="text-navy p-2 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-orange-red rounded-full">
+<span class="material-symbols-outlined" data-icon="menu" data-weight="fill" style="font-variation-settings: 'FILL' 1;">menu</span>
+</button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-start justify-center px-6 pt-8 pb-12 z-10 relative">
+<!-- Status Badges -->
+<div class="flex flex-col gap-3 mb-8 w-full">
+<div class="inline-flex items-center self-start bg-orange-red text-white text-[10px] font-bold font-label px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                ⚡ Building: FitMirror
+            </div>
+<div class="inline-flex items-center self-start bg-orange-red text-white text-[10px] font-bold font-label px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                Open to Work
+            </div>
+</div>
+<!-- Giant Typography Name -->
+<div class="flex flex-col w-full mb-6">
+<h1 class="font-headline font-extrabold text-[56px] leading-[0.9] text-navy tracking-tighter">
+                MANTHAN
+            </h1>
+<h1 class="font-headline font-extrabold text-[56px] leading-[0.9] text-orange-red tracking-tighter">
+                UTEKAR
+            </h1>
+</div>
+<!-- Subtitle & Details -->
+<div class="w-full mb-10 flex flex-col gap-4">
+<p class="font-label text-sm text-navy font-medium border-r-2 border-navy pr-1 w-fit typewriter inline-block">
+                Full-Stack Developer · React · Node.js
+            </p>
+<p class="font-label text-xs text-navy/80">
+                18 years, 5 months, 3 days
+            </p>
+</div>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-4 mt-auto">
+<button class="w-full bg-orange-red text-white font-headline font-bold text-sm py-4 px-6 rounded-full tracking-wide hover:scale-95 transition-transform duration-200 shadow-lg shadow-orange-red/20 text-center">
+                VIEW MY WORK
+            </button>
+<button class="w-full bg-transparent border-2 border-navy text-navy font-headline font-bold text-sm py-4 px-6 rounded-full tracking-wide hover:bg-navy hover:text-white transition-colors duration-200 text-center">
+                DOWNLOAD CV
+            </button>
+</div>
+</main>
+<!-- Scroll Indicator -->
+<div class="w-full flex justify-center pb-6 absolute bottom-0">
+<div class="w-[30px] h-[50px] border-2 border-navy/30 rounded-full flex justify-center p-1">
+<div class="w-1.5 h-1.5 bg-navy rounded-full animate-bounce mt-1"></div>
+</div>
+</div>
+</body></html>

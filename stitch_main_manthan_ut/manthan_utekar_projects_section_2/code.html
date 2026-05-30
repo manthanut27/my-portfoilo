@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Projects - Manthan Utekar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Public+Sans:wght@700;800;900&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {fizzi: {yellow: "#FDE047", orange: "#FE6334", navy: "#0c4a6e", lime: "#D9F99D", cyan: "#C0F0F5", pink: "#FFA6B5", lavender: "#E9CFF6", green: "#CBEF9A", grape: "#572981", cherry: "#710523"}, secondary: "#b7c7e8", lead: "#70707d", "on-tertiary-container": "#fffaf9", background: "#12121e", "on-surface-variant": "#c5c5d7", "outline-variant": "#454654", starlight: "#ededf3", error: "#ffb4ab", primary: "#bbc3ff", graphite: "#272735", "on-secondary-container": "#a6b6d6", "pure-white": "#ffffff", tertiary: "#ffb689", "surface-container-high": "#292935", "inverse-primary": "#3a4fd4", "on-background": "#e3e0f1", "on-primary-container": "#fdfaff", "inverse-on-surface": "#2f2f3c", "on-primary-fixed-variant": "#1b33bc", "on-tertiary-fixed-variant": "#743500", "tertiary-fixed": "#ffdbc8", "surface-container-lowest": "#0d0d18", "on-error-container": "#ffdad6", "on-primary-fixed": "#000d60", "on-tertiary": "#512300", "on-error": "#690005", "secondary-fixed": "#d6e3ff", "surface-container-highest": "#343440", "on-surface": "#e3e0f1", "tertiary-container": "#b95801", "primary-fixed-dim": "#bbc3ff", "surface-container": "#1e1e2b", "inverse-surface": "#e3e0f1", "surface-tint": "#bbc3ff", outline: "#8f8fa0", "tertiary-fixed-dim": "#ffb689", "error-container": "#93000a", "on-tertiary-fixed": "#321300", "on-secondary-fixed-variant": "#384763", "on-secondary-fixed": "#0a1c35", "on-primary": "#001b97", "surface-dim": "#12121e", "surface-container-low": "#1a1a26", "on-secondary": "#21314b", abyss: "#171721", "primary-fixed": "#dfe0ff", "surface-bright": "#383845", "secondary-fixed-dim": "#b7c7e8", surface: "#12121e", "surface-variant": "#343440", "primary-container": "#5266eb", "secondary-container": "#384763", silver: "#c3c3cc"}, fontFamily: {headline: ["Manrope"], display: ["Manrope"], body: ["Inter"], label: ["Inter"], "heading-lg": ["manrope"], subheading: ["inter"], "heading-sm": ["inter"], heading: ["manrope"], "body-sm": ["inter"], caption: ["inter"]}, fontSize: {"heading-lg": ["49px", {lineHeight: "1.15", letterSpacing: "0.01em", fontWeight: "300"}], subheading: ["18px", {lineHeight: "1.4", fontWeight: "400"}], "heading-sm": ["21px", {lineHeight: "1.35", fontWeight: "480"}], body: ["16px", {lineHeight: "1.5", letterSpacing: "0.01em", fontWeight: "400"}], heading: ["32px", {lineHeight: "1.2", fontWeight: "400"}], display: ["65px", {lineHeight: "1.1", letterSpacing: "0.02em", fontWeight: "300"}], "body-sm": ["14px", {lineHeight: "1.5", letterSpacing: "0.02em", fontWeight: "400"}], caption: ["12px", {lineHeight: "1.5", letterSpacing: "0.02em", fontWeight: "400"}]}, spacing: {xl: "80px", sm: "16px", lg: "40px", md: "24px", xs: "8px", xxl: "120px", "max-width": "1200px", base: "4px"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .project-card-container {
+            perspective: 1000px;
+        }
+        .project-card {
+            transform: rotateY(-6deg) rotateX(2deg);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .project-card:hover {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+            z-index: 10;
+        }
+        
+        /* Hide scrollbar for horizontal scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-fizzi-pink font-body text-fizzi-navy antialiased selection:bg-fizzi-orange selection:text-white min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/30 backdrop-blur-md dark:bg-black/30 border-b border-white/20 shadow-sm transition-all duration-300 flex justify-between items-center px-6 py-4 w-full">
+<div class="text-2xl font-headline font-black text-sky-900 dark:text-sky-100 hover:scale-105 transition-transform duration-200">
+            MANTHAN UTEKAR
+        </div>
+<div class="hidden md:flex space-x-8 items-center font-headline font-black uppercase tracking-tighter text-sky-900 dark:text-sky-100">
+<a class="text-orange-600 font-black border-b-4 border-orange-600 hover:scale-105 transition-transform duration-200 py-1" href="#">Work</a>
+<a class="text-sky-900 hover:text-orange-600 transition-colors hover:scale-105 transition-transform duration-200 py-1 border-b-4 border-transparent" href="#">Skills</a>
+<a class="text-sky-900 hover:text-orange-600 transition-colors hover:scale-105 transition-transform duration-200 py-1 border-b-4 border-transparent" href="#">About</a>
+<a class="text-sky-900 hover:text-orange-600 transition-colors hover:scale-105 transition-transform duration-200 py-1 border-b-4 border-transparent" href="#">Terminal</a>
+<a class="text-sky-900 hover:text-orange-600 transition-colors hover:scale-105 transition-transform duration-200 py-1 border-b-4 border-transparent" href="#">Contact</a>
+</div>
+<button class="bg-fizzi-orange text-white font-label font-bold py-2 px-6 rounded-full hover:scale-105 transition-transform duration-200 active:scale-95 shadow-md hidden md:block">
+            Resume
+        </button>
+<button class="md:hidden text-sky-900 dark:text-sky-100">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-24 pb-20 overflow-hidden flex flex-col">
+<!-- Marquee Strip -->
+<div class="bg-fizzi-orange text-fizzi-yellow py-3 border-y-4 border-fizzi-navy mb-12 transform -rotate-2 scale-105 overflow-hidden font-label font-bold text-lg tracking-widest uppercase">
+<div class="marquee">
+<span>LATEST PROJECTS // CREATIVE DEV // LATEST PROJECTS // CREATIVE DEV // LATEST PROJECTS // CREATIVE DEV // LATEST PROJECTS // CREATIVE DEV</span>
+</div>
+</div>
+<div class="container mx-auto px-6 lg:px-12 relative flex-grow flex flex-col">
+<!-- Section Header -->
+<div class="flex items-end justify-between mb-12 relative">
+<div class="absolute -top-20 -left-10 text-[200px] font-black text-white/20 select-none pointer-events-none leading-none z-0">
+                    作
+                </div>
+<div class="relative z-10">
+<span class="font-label text-fizzi-navy/60 tracking-[0.2em] font-bold block mb-2">WORK</span>
+<h1 class="font-headline text-[74px] md:text-[100px] text-fizzi-navy leading-[0.8] uppercase">Projects</h1>
+</div>
+<div class="hidden md:flex space-x-2 relative z-10 pb-4">
+<button class="w-12 h-12 rounded-full border-2 border-fizzi-navy flex items-center justify-center hover:bg-fizzi-navy hover:text-white transition-colors" onclick="document.getElementById('scroll-container').scrollBy({left: -400, behavior: 'smooth'})">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="w-12 h-12 rounded-full border-2 border-fizzi-navy flex items-center justify-center hover:bg-fizzi-navy hover:text-white transition-colors" onclick="document.getElementById('scroll-container').scrollBy({left: 400, behavior: 'smooth'})">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Scroll Container -->
+<div class="flex gap-8 overflow-x-auto no-scrollbar pb-16 pt-8 snap-x snap-mandatory flex-grow items-center w-[100vw] -ml-6 lg:-ml-12 pl-6 lg:pl-12 pr-32" id="scroll-container">
+<!-- Card 1: Eva Bloom -->
+<div class="project-card-container snap-center shrink-0 w-[85vw] md:w-[600px] h-full flex items-center">
+<div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full max-h-[700px] relative w-full border-l-[6px] border-l-[#572981] shadow-xl">
+<div class="absolute top-4 right-4 z-20">
+<span class="bg-fizzi-orange text-white text-xs font-label font-bold px-3 py-1 rounded-full shadow-md">LIVE</span>
+</div>
+<div class="h-64 overflow-hidden relative border-b border-white/30 bg-black/5">
+<img alt="Eva Bloom Project" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJqSrkr-blVDlX-HqAMtgVWLBL_yE--HjGpwbLYv6e0b58ziTzsUEeO9T4iKqnLasMR-ECqRhV6Lx0UJ_uoLT91MSU0lGZGNYRSS7JPXPOy5lZjtcg4nAU_JThBCHXjCNeXC6nJqHvgRpzopKgDI0cRFohcnwUU71SMmOk2x8j5WrAirP5djf3ARtOmsw38pmDQSZWvQbRQqmZesJqoSGyIt6mZIUBWTNjIULtYqu8eGL3IuV5kn1f7oGMDsd6jRAngLDOQos6QOE"/>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<h3 class="font-headline text-3xl font-extrabold mb-3 text-fizzi-navy">Eva Bloom</h3>
+<p class="font-body text-fizzi-navy/80 mb-6 flex-grow text-lg leading-relaxed">India’s premium jewelry e-commerce platform featuring dynamic product galleries, secure checkout, and real-time inventory management.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">React</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">Node.js</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">Supabase</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">Prisma</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">Razorpay</span>
+</div>
+<div class="flex gap-4">
+<a class="flex-1 bg-fizzi-orange hover:bg-fizzi-navy text-white text-center py-3 rounded-xl font-headline font-bold transition-colors" href="#">Live Demo</a>
+<a class="flex-1 bg-white hover:bg-gray-100 text-fizzi-navy border-2 border-fizzi-navy text-center py-3 rounded-xl font-headline font-bold transition-colors" href="#">GitHub</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: BMW M4 GT3 -->
+<div class="project-card-container snap-center shrink-0 w-[85vw] md:w-[600px] h-full flex items-center">
+<div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full max-h-[700px] relative w-full border-l-[6px] border-l-[#710523] shadow-xl">
+<div class="absolute top-4 right-4 z-20">
+<span class="bg-fizzi-orange text-white text-xs font-label font-bold px-3 py-1 rounded-full shadow-md">LIVE</span>
+</div>
+<div class="h-64 overflow-hidden relative border-b border-white/30 bg-black/90">
+<img alt="BMW M4 GT3 Showcase" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRtINeOCqG1mM8fr76lQr2CjlqlFZNlgd6LpvVspmJRDpL8s2qCs132OdeZbjN1C1Om-VyUZNZ_7BKL8AR71FbfpNNkDF0WqgM7PZ_qxFjGSwCv73QvcMloRcfIB9H9n-GZf2N-r7WSGa-RPycEYMU4O4f0Td-xZjXxyo7Ho8PPr4oRxWY95LN0_Ep1NJd1cWvaQ8pAqR2RlLz61XKZOmHUsLJhjsKBGQ-fG1f5Miv6_HV920SF72i6LpFzlAAyNYpJwHmqwLRgjU"/>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<h3 class="font-headline text-3xl font-extrabold mb-3 text-fizzi-navy">BMW M4 GT3</h3>
+<p class="font-body text-fizzi-navy/80 mb-6 flex-grow text-lg leading-relaxed">Immersive 3D car showcase with interactive configuration, 360-degree rotation, and performance specs visualization using WebGL.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">Next.js</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">R3F</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">GSAP</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">Framer Motion</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">Tailwind</span>
+</div>
+<div class="flex gap-4">
+<a class="flex-1 bg-fizzi-orange hover:bg-fizzi-navy text-white text-center py-3 rounded-xl font-headline font-bold transition-colors" href="#">Live Demo</a>
+<a class="flex-1 bg-white hover:bg-gray-100 text-fizzi-navy border-2 border-fizzi-navy text-center py-3 rounded-xl font-headline font-bold transition-colors" href="#">GitHub</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: FitMirror -->
+<div class="project-card-container snap-center shrink-0 w-[85vw] md:w-[600px] h-full flex items-center">
+<div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full max-h-[700px] relative w-full border-l-[6px] border-l-[#4B7002] shadow-xl opacity-90">
+<div class="absolute top-4 right-4 z-20">
+<span class="bg-fizzi-navy text-fizzi-yellow text-xs font-label font-bold px-3 py-1 rounded-full shadow-md">COMING SOON</span>
+</div>
+<div class="h-64 overflow-hidden relative border-b border-white/30 bg-black/80">
+<img alt="FitMirror App" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnjg6aPEpHZw7J-2K5dypKdyZ9xOWxFNA1yePXukIBcPU7T_0bh5mKP4OStI2iboNbduYY8Gb4slPadrM_76OfZjh7442jYAzBjyeq59wbck7BEhaUMStzGwzpl8SOIqWIJljW8AkFianyH4M7ucR9Bz6aRZ25XhZaSCvmonMucRKR3EfZcwFqIORGA4Ya6wQGYZyKv3uosNH3FSFpNDipRHg2N9QvXXNhcJ5yNVuEP1S4UDKr4vqWZ45O7j4KbUfaxqRJuxf7aRE"/>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<h3 class="font-headline text-3xl font-extrabold mb-3 text-fizzi-navy">FitMirror</h3>
+<p class="font-body text-fizzi-navy/80 mb-6 flex-grow text-lg leading-relaxed">AI-powered fitness tracking application utilizing pose estimation to provide real-time form correction and workout analytics. (Work in progress)</p>
+<div class="flex flex-wrap gap-2 mb-8 opacity-50">
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">TensorFlow.js</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">React Native</span>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-gray-300 text-gray-500 text-center py-3 rounded-xl font-headline font-bold cursor-not-allowed" disabled="">Live Demo</button>
+<button class="flex-1 bg-gray-100 border-2 border-gray-300 text-gray-400 text-center py-3 rounded-xl font-headline font-bold cursor-not-allowed" disabled="">GitHub</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4: Tokyo SPA -->
+<div class="project-card-container snap-center shrink-0 w-[85vw] md:w-[600px] h-full flex items-center mr-12">
+<div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full max-h-[700px] relative w-full border-l-[6px] border-l-[#690B3D] shadow-xl opacity-90">
+<div class="absolute top-4 right-4 z-20">
+<span class="bg-fizzi-navy text-fizzi-yellow text-xs font-label font-bold px-3 py-1 rounded-full shadow-md">COMING SOON</span>
+</div>
+<div class="h-64 overflow-hidden relative border-b border-white/30 bg-[#FDFBF7]">
+<img alt="Tokyo SPA Site" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtK2fhIZoLXUzW1aOmvN2v9dGg4U3qLzx10vnwHPMHPbbDuBHQEJTQsv4TvOZf7CeX6fRxjlQe5OM8LxU7RuvA5DXJqGzzw7TU70DimXrIllOI7FVwX2lZGYbw_w4MOA6CNTh-k23X6z5k3iS1i1r069lFOuFk23uXTej3d6Larx4zSHhEVqtTHXDoPrcBnYR-vTAus36L9F6NFms4UJWZg6V-9tvSVmi2RDqMBPfse74d7wHS48mjdoysXKWjsq5XWd0b25XGVWA"/>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<h3 class="font-headline text-3xl font-extrabold mb-3 text-fizzi-navy">Tokyo SPA</h3>
+<p class="font-body text-fizzi-navy/80 mb-6 flex-grow text-lg leading-relaxed">Japanese-inspired single page application for a luxury wellness center, featuring serene animations and appointment booking.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">React</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">GSAP</span>
+<span class="bg-white/50 text-fizzi-navy text-xs font-label px-3 py-1.5 rounded-full border border-white">Tailwind</span>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-gray-300 text-gray-500 text-center py-3 rounded-xl font-headline font-bold cursor-not-allowed" disabled="">Live Demo</button>
+<button class="flex-1 bg-gray-100 border-2 border-gray-300 text-gray-400 text-center py-3 rounded-xl font-headline font-bold cursor-not-allowed" disabled="">GitHub</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Scroll Progress -->
+<div class="w-full max-w-md mx-auto mt-4 h-2 bg-white/30 rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-fizzi-orange w-1/4 rounded-full transition-all duration-300" id="scroll-progress"></div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-lime-200 dark:bg-lime-900 flex flex-col md:flex-row justify-between items-center px-10 max-w-full">
+<div class="font-headline font-extrabold text-sky-900 mb-6 md:mb-0 text-xl">
+            MANTHAN UTEKAR
+        </div>
+<div class="font-body font-medium text-sky-900 dark:text-lime-50 text-sm md:text-base text-center md:text-left mb-6 md:mb-0">
+            © 2024 Manthan Utekar • Built with Energy
+        </div>
+<div class="flex space-x-6 font-body font-medium">
+<a class="text-sky-800 hover:text-orange-600 transition-colors hover:opacity-80 active:translate-y-1" href="#">Github</a>
+<a class="text-sky-800 hover:text-orange-600 transition-colors hover:opacity-80 active:translate-y-1" href="#">LinkedIn</a>
+<a class="text-sky-800 hover:text-orange-600 transition-colors hover:opacity-80 active:translate-y-1" href="#">Twitter</a>
+<a class="text-sky-800 hover:text-orange-600 transition-colors hover:opacity-80 active:translate-y-1" href="#">Email</a>
+</div>
+</footer>
+<script>
+        // Handle scroll progress bar
+        const scrollContainer = document.getElementById('scroll-container');
+        const scrollProgress = document.getElementById('scroll-progress');
+
+        scrollContainer.addEventListener('scroll', () => {
+            const scrollPercentage = (scrollContainer.scrollLeft / (scrollContainer.scrollWidth - scrollContainer.clientWidth)) * 100;
+            // Map percentage to width (25% to 100% since we have 4 items)
+            const width = 25 + (scrollPercentage * 0.75);
+            scrollProgress.style.width = `${Math.max(25, Math.min(100, width))}%`;
+        });
+    </script>
+</body></html>

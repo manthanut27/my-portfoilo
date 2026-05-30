@@ -74,11 +74,14 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => scrollToSection('#hero')}
-            className="font-syne text-2xl font-extrabold tracking-tight"
-            style={{ color: 'var(--navy)' }}
+            className="flex items-center gap-2 transition-transform duration-200 hover:scale-[1.05]"
             aria-label="Scroll to top"
           >
-            MU
+            <img
+              src="/logo.png"
+              alt="MU Logo"
+              className="h-10 w-10 rounded-lg shadow-sm"
+            />
           </button>
 
           {/* Desktop Nav Links */}

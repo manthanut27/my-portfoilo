@@ -132,7 +132,7 @@ export const projects: Project[] = [
     techStack: ['React', 'Node.js', 'Supabase', 'Prisma', 'Razorpay', 'Resend', 'Redis'],
     liveUrl: 'https://evabloom.in',
     githubUrl: 'https://github.com/manthanut27/eva-bloom',
-    image: '/projects/eva-bloom.webp',
+    image: '/projects/eva-bloom.png',
   },
   {
     title: 'BMW M4 GT3',
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'R3F', 'GSAP', 'Framer Motion', 'Tailwind'],
     liveUrl: 'https://bmw-m4-gt3.vercel.app',
     githubUrl: 'https://github.com/manthanut27/bmw-m4-gt3',
-    image: '/projects/bmw-m4.webp',
+    image: '/projects/bmw-m4.png',
   },
   {
     title: 'FitMirror',
@@ -151,7 +151,7 @@ export const projects: Project[] = [
     status: 'COMING SOON',
     accentColor: colors.watermelon,
     techStack: ['React', 'TensorFlow.js', 'Node.js'],
-    image: '/projects/fitmirror.webp',
+    image: '/projects/fitmirror.png',
   },
   {
     title: 'Tokyo SPA',
@@ -160,7 +160,7 @@ export const projects: Project[] = [
     status: 'COMING SOON',
     accentColor: colors.berry,
     techStack: ['React', 'GSAP', 'Tailwind'],
-    image: '/projects/tokyo-spa.webp',
+    image: '/projects/tokyo-spa.png',
   },
 ];
 

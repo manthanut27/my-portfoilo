@@ -95,23 +95,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         scale: 1.02,
       }}
     >
-      {/* Project Image Placeholder */}
-      <div
-        className="h-48 w-full relative overflow-hidden"
-        style={{
-          background: `linear-gradient(135deg, ${project.accentColor}22, ${project.accentColor}44)`,
-        }}
-      >
-        {/* Placeholder pattern */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-syne text-4xl font-extrabold opacity-10" style={{ color: project.accentColor }}>
-            {project.title}
-          </span>
-        </div>
+      {/* Project Image */}
+      <div className="h-48 w-full relative overflow-hidden bg-black/5">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+        />
 
         {/* Status Badge */}
         <span
-          className="absolute top-4 right-4 px-3 py-1 text-xs font-bold rounded-full"
+          className="absolute top-4 right-4 px-3 py-1 text-xs font-bold rounded-full z-10 shadow-sm"
           style={{
             background: project.status === 'LIVE' ? 'var(--orange-red)' : 'var(--navy)',
             color: project.status === 'LIVE' ? 'white' : 'var(--fizzi-yellow)',

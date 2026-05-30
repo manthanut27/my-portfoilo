@@ -145,89 +145,39 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Right Column — Decorative Element */}
+        {/* Right Column — Premium 3D Graphic */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 1, ease: 'easeOut' }}
-          className="relative hidden md:flex items-center justify-center"
+          className="relative hidden md:flex items-center justify-center w-full"
           style={{ height: '500px' }}
         >
-          {/* Outer Dashed Ring */}
+          {/* Glowing abstract background blobs */}
           <div
-            className="absolute w-[420px] h-[420px] rounded-full border-2 border-dashed"
+            className="absolute w-64 h-64 rounded-full blur-[100px] animate-pulse"
             style={{
-              borderColor: 'rgba(12, 74, 110, 0.15)',
-              animation: 'slowSpin 24s linear infinite',
-            }}
-          />
-          {/* Middle Ring */}
-          <div
-            className="absolute w-[320px] h-[320px] rounded-full border"
-            style={{
-              borderColor: 'rgba(12, 74, 110, 0.1)',
-              animation: 'slowSpinReverse 16s linear infinite',
-            }}
-          />
-          {/* Inner Ring */}
-          <div
-            className="absolute w-[220px] h-[220px] rounded-full border"
-            style={{ borderColor: 'rgba(12, 74, 110, 0.08)' }}
-          />
-
-          {/* Floating Blobs */}
-          <div
-            className="absolute w-24 h-24 rounded-full blur-xl"
-            style={{
-              background: 'var(--pink)',
+              background: 'var(--orange-red)',
               top: '10%',
               right: '10%',
-              animation: 'float 6s ease-in-out infinite',
-              opacity: 0.6,
+              opacity: 0.15,
             }}
           />
           <div
-            className="absolute w-20 h-20 rounded-full blur-xl"
-            style={{
-              background: 'var(--lavender)',
-              bottom: '15%',
-              left: '5%',
-              animation: 'floatB 8s ease-in-out infinite',
-              opacity: 0.5,
-            }}
-          />
-          <div
-            className="absolute w-16 h-16 rounded-full blur-xl"
+            className="absolute w-72 h-72 rounded-full blur-[100px]"
             style={{
               background: 'var(--cyan)',
-              top: '60%',
-              right: '5%',
-              animation: 'float 7s ease-in-out infinite 1s',
-              opacity: 0.5,
+              bottom: '10%',
+              left: '10%',
+              opacity: 0.25,
             }}
           />
 
-          {/* Accent Dots */}
-          <div
-            className="absolute w-3 h-3 rounded-full"
-            style={{ background: 'var(--grape)', top: '25%', left: '20%' }}
+          <img
+            src="/hero-graphic.png"
+            alt="MU Hero Graphic"
+            className="w-full max-w-[450px] h-auto object-contain relative z-10 drop-shadow-2xl hover:scale-[1.03] transition-transform duration-500"
           />
-          <div
-            className="absolute w-2 h-2 rounded-full"
-            style={{ background: 'var(--cherry)', bottom: '30%', right: '20%' }}
-          />
-
-          {/* Center MU Monogram */}
-          <div
-            className="relative z-10 w-24 h-24 rounded-full flex items-center justify-center glass-strong"
-          >
-            <span
-              className="font-syne text-3xl font-extrabold"
-              style={{ color: 'var(--navy)' }}
-            >
-              MU
-            </span>
-          </div>
         </motion.div>
       </div>
 
