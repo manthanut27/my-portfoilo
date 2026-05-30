@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/contact.ts": {
+      "runtime": "edge"
+    }
+  },
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
