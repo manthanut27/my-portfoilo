@@ -9,17 +9,18 @@ interface HeroProps {
   hiringManagerMode: boolean;
 }
 
+// Subtitle typewriter options (declared outside to maintain static reference)
+const subtitles = [
+  'Full-Stack Developer · React · Node.js · Supabase',
+  "Building India's Jewelry Store · Eva Bloom",
+  'Currently open to full-time roles in Mumbai / Remote',
+];
+
 export const Hero: React.FC<HeroProps> = ({ hiringManagerMode }) => {
   const age = useLiveAge();
   const [availability, setAvailability] = useState<'open' | 'busy'>('open');
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
-  // Subtitle typewriter options
-  const subtitles = [
-    'Full-Stack Developer · React · Node.js · Supabase',
-    "Building India's Jewelry Store · Eva Bloom",
-    'Currently open to full-time roles in Mumbai / Remote',
-  ];
   const typedSubtitle = useTypewriter(subtitles, 60, 40, 3000);
 
   // Monitor scroll for indicator hiding

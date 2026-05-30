@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export const useTypewriter = (
   words: string[],
@@ -6,45 +6,57 @@ export const useTypewriter = (
   backSpeed: number = 40,
   delay: number = 3000
 ) => {
-  const [wordIndex, setWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
+  const wordIndexRef = useRef(0);
+  const isDeletingRef = useRef(false);
+  const textRef = useRef('');
 
   useEffect(() => {
     let timer: any;
-    const currentWord = words[wordIndex];
 
-    const handleType = () => {
+    const tick = () => {
+      const currentWord = words[wordIndexRef.current];
+      const isDeleting = isDeletingRef.current;
+      const text = textRef.current;
+
       if (!isDeleting) {
-        // Typing
-        setCurrentText(currentWord.substring(0, currentText.length + 1));
+        // Typing: Add one character
+        const nextText = currentWord.substring(0, text.length + 1);
+        textRef.current = nextText;
+        setCurrentText(nextText);
 
-        if (currentText === currentWord) {
-          // Finished typing, pause before deleting
-          timer = setTimeout(() => setIsDeleting(true), delay);
-          return;
+        if (nextText === currentWord) {
+          // Fully typed: Pause before deleting
+          isDeletingRef.current = true;
+          timer = setTimeout(tick, delay);
+        } else {
+          // Keep typing
+          timer = setTimeout(tick, typeSpeed);
         }
-
-        timer = setTimeout(handleType, typeSpeed);
       } else {
-        // Backspacing
-        setCurrentText(currentWord.substring(0, currentText.length - 1));
+        // Deleting: Remove one character
+        const nextText = currentWord.substring(0, text.length - 1);
+        textRef.current = nextText;
+        setCurrentText(nextText);
 
-        if (currentText === '') {
-          // Finished deleting, move to next word
-          setIsDeleting(false);
-          setWordIndex((prev) => (prev + 1) % words.length);
-          return;
+        if (nextText === '') {
+          isDeletingRef.current = false;
+          // Move to next word
+          wordIndexRef.current = (wordIndexRef.current + 1) % words.length;
+          timer = setTimeout(tick, 500); // brief pause before starting next word
+        } else {
+          // Keep deleting
+          timer = setTimeout(tick, backSpeed);
         }
-
-        timer = setTimeout(handleType, backSpeed);
       }
     };
 
-    timer = setTimeout(handleType, isDeleting ? backSpeed : typeSpeed);
+    // Initiate typewriter loop
+    timer = setTimeout(tick, typeSpeed);
 
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, wordIndex, words, typeSpeed, backSpeed, delay]);
+  }, [words.join('|'), typeSpeed, backSpeed, delay]);
 
   return currentText;
 };
+export default useTypewriter;
