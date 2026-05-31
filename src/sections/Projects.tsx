@@ -7,7 +7,7 @@ interface Project {
   status: 'LIVE' | 'COMING SOON';
   accentColor: string;
   desc: string;
-  image: string;
+  image?: string;
   tech: string[];
   liveLink?: string;
   gitLink?: string;
@@ -50,7 +50,6 @@ export const Projects: React.FC<ProjectsProps> = ({ hiringManagerMode }) => {
       status: 'COMING SOON',
       accentColor: '#4B7002', // watermelon
       desc: 'AI-powered fitness tracking application utilizing pose estimation to provide real-time form correction and workout analytics.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBnjg6aPEpHZw7J-2K5dypKdyZ9xOWxFNA1yePXukIBcPU7T_0bh5mKP4OStI2iboNbduYY8Gb4slPadrM_76OfZjh7442jYAzBjyeq59wbck7BEhaUMStzGwzpl8SOIqWIJljW8AkFianyH4M7ucR9Bz6aRZ25XhZaSCvmonMucRKR3EfZcwFqIORGA4Ya6wQGYZyKv3uosNH3FSFpNDipRHg2N9QvXXNhcJ5yNVuEP1S4UDKr4vqWZ45O7j4KbUfaxqRJuxf7aRE',
       tech: ['TensorFlow.js', 'React Native', 'Expo', 'Python'],
     },
     {
@@ -58,7 +57,6 @@ export const Projects: React.FC<ProjectsProps> = ({ hiringManagerMode }) => {
       status: 'COMING SOON',
       accentColor: '#690B3D', // berry
       desc: 'Japanese-inspired single page application for a luxury wellness center, featuring serene animations, local map APIs, and booking schedulers.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCtK2fhIZoLXUzW1aOmvN2v9dGg4U3qLzx10vnwHPMHPbbDuBHQEJTQsv4TvOZf7CeX6fRxjlQe5OM8LxU7RuvA5DXJqGzzw7TU70DimXrIllOI7FVwX2lZGYbw_w4MOA6CNTh-k23X6z5k3iS1i1r069lFOuFk23uXTej3d6Larx4zSHhEVqtTHXDoPrcBnYR-vTAus36L9F6NFms4UJWZg6V-9tvSVmi2RDqMBPfse74d7wHS48mjdoysXKWjsq5XWd0b25XGVWA',
       tech: ['React', 'GSAP', 'Tailwind', 'Vite'],
     },
   ];
@@ -214,12 +212,28 @@ export const Projects: React.FC<ProjectsProps> = ({ hiringManagerMode }) => {
                   </div>
 
                   {/* Thumbnail Cover image */}
-                  <div className="h-56 overflow-hidden relative border-b border-white/20 bg-black/5">
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none"
-                    />
+                  <div className="h-56 overflow-hidden relative border-b border-white/20 bg-black/5 flex items-center justify-center">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none"
+                      />
+                    ) : (
+                      /* Aesthetic Retro-Modern Placeholder */
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-slate-950 text-brand-yellow font-space uppercase relative select-none">
+                        <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none" />
+                        <span className="text-[10px] tracking-[0.2em] font-black opacity-50 mb-1 text-slate-400">
+                          System Status
+                        </span>
+                        <span className="text-lg tracking-widest font-black text-brand-orange animate-pulse">
+                          Coming Soon
+                        </span>
+                        <span className="text-[8px] font-mono tracking-widest opacity-30 mt-2 text-slate-500">
+                          [ DEVELOPMENT GATE ACTIVE ]
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Body Content */}
