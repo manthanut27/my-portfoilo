@@ -39,12 +39,27 @@ export const useIntersectionObserver = (
       });
     }, options);
 
-    // Watch all HTML sections with IDs
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
+    // Helper to query and observe all current sections
+    const observeSections = () => {
+      const sections = document.querySelectorAll('section[id]');
+      sections.forEach((section) => observer.observe(section));
+    };
+
+    // Initial binding
+    observeSections();
+
+    // Monitor the DOM for lazy-loaded sections mounting
+    const mutationObserver = new MutationObserver(() => {
+      observeSections();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
 
     return () => {
-      sections.forEach((section) => observer.unobserve(section));
+      mutationObserver.disconnect();
       observer.disconnect();
     };
   }, [options.threshold, options.rootMargin, ...dependencies]);

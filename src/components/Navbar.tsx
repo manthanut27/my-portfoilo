@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSound } from '../context/SoundContext';
-import { Volume2, VolumeX, Menu, X, FileText } from 'lucide-react';
+import { Menu, X, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavbarProps {
@@ -9,7 +8,6 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ activeSection, hiringManagerMode }) => {
-  const { muted, toggleMute } = useSound();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -81,16 +79,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, hiringManagerMode
 
         {/* Actions Button Bar */}
         <div className="flex items-center gap-4">
-          {/* Mute Toggle (hidden in Hiring Manager Mode) */}
-          {!hiringManagerMode && (
-            <button
-              onClick={toggleMute}
-              aria-label={muted ? 'Unmute ambient audio' : 'Mute ambient audio'}
-              className="p-2 rounded-full border border-brand-navy/15 text-brand-navy hover:bg-brand-navy/5 active:scale-95 transition-all duration-200 cursor-pointer"
-            >
-              {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-            </button>
-          )}
 
           {/* Resume Download Button */}
           <a

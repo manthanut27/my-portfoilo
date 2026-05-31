@@ -20,6 +20,9 @@ interface ProjectsProps {
 export const Projects: React.FC<ProjectsProps> = ({ hiringManagerMode }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [scrollProgress, setScrollProgress] = useState(25); // Min 25% progress default width
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
 
   const projects: Project[] = [
     {
@@ -95,6 +98,30 @@ export const Projects: React.FC<ProjectsProps> = ({ hiringManagerMode }) => {
     card.style.setProperty('--mouse-y', `${y}px`);
   };
 
+  // Horizontal mouse dragging scroll carousel handlers
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeftState(scrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMoveDrag = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Drag scroll multiplier speed
+    scrollRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
   const scrollLeft = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
@@ -150,7 +177,13 @@ export const Projects: React.FC<ProjectsProps> = ({ hiringManagerMode }) => {
         {/* Scrollable Project Cards Carousel */}
         <div
           ref={scrollRef}
-          className="flex gap-8 overflow-x-auto no-scrollbar pb-12 pt-4 snap-x snap-mandatory flex-grow items-center w-full"
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMoveDrag}
+          className={`flex gap-8 overflow-x-auto no-scrollbar pb-12 pt-4 flex-grow items-center w-full cursor-grab active:cursor-grabbing select-none ${
+            isDragging ? '' : 'snap-x snap-mandatory'
+          }`}
         >
           {projects.map((project) => {
             const isLive = project.status === 'LIVE';

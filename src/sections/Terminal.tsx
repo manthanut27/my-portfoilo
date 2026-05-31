@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSound } from '../context/SoundContext';
 import { useGitHubStats } from '../hooks/useGitHubStats';
 import { useCommandHistory } from '../hooks/useCommandHistory';
 
@@ -14,7 +13,6 @@ interface TerminalProps {
 }
 
 export const Terminal: React.FC<TerminalProps> = ({ hiringManagerMode }) => {
-  const { playClick } = useSound();
   const { publicRepos, stars, contributions, loading: statsLoading } = useGitHubStats();
   const { addCommand, getPrevious, getNext } = useCommandHistory();
 
@@ -33,6 +31,8 @@ export const Terminal: React.FC<TerminalProps> = ({ hiringManagerMode }) => {
   const [isJapanese, setIsJapanese] = useState(false);
 
   const cliBottomRef = useRef<HTMLDivElement | null>(null);
+  const terminalBodyRef = useRef<HTMLDivElement | null>(null);
+  const cliInputRef = useRef<HTMLInputElement | null>(null);
 
   const cinematicLines = [
     '> initializing portfolio CLI...',
@@ -90,17 +90,27 @@ export const Terminal: React.FC<TerminalProps> = ({ hiringManagerMode }) => {
     return () => clearTimeout(timer);
   }, [hiringManagerMode]);
 
-  // 3. CLI Scroll to bottom helper
+  // 3. CLI Scroll to bottom helper (scrolls internal terminal container instead of viewport)
   useEffect(() => {
-    if (activeTab === 'cli' && cliBottomRef.current) {
-      cliBottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (activeTab === 'cli' && terminalBodyRef.current) {
+      const container = terminalBodyRef.current;
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: 'smooth'
+      });
     }
   }, [cliHistory, activeTab]);
 
-  // Keyboard Sound click trigger for CLI input
+  // 4. Focus CLI Input preventing viewport scroll jumps
+  useEffect(() => {
+    if (activeTab === 'cli' && cliInputRef.current) {
+      cliInputRef.current.focus({ preventScroll: true });
+    }
+  }, [activeTab]);
+
+  // CLI input change handler
   const handleCliChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCliInput(e.target.value);
-    playClick(); // interactive feedback
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -296,7 +306,7 @@ export const Terminal: React.FC<TerminalProps> = ({ hiringManagerMode }) => {
           </div>
 
           {/* Terminal Console Body */}
-          <div className="p-6 md:p-8 font-mono text-terminal-text text-left text-sm md:text-base leading-relaxed relative min-h-[420px] max-h-[500px] overflow-y-auto bg-terminal-bg select-text">
+          <div ref={terminalBodyRef} className="p-6 md:p-8 font-mono text-terminal-text text-left text-sm md:text-base leading-relaxed relative min-h-[420px] max-h-[500px] overflow-y-auto bg-terminal-bg select-text">
             {/* Scanlines overlay (disabled in Hiring Manager Mode) */}
             {!hiringManagerMode && <div className="absolute inset-0 scanlines opacity-20 pointer-events-none" />}
 
@@ -338,13 +348,13 @@ export const Terminal: React.FC<TerminalProps> = ({ hiringManagerMode }) => {
                 <div className="flex items-center gap-2 mt-2 pt-2 border-t border-white/5">
                   <span className="text-brand-orange font-bold">manthan@portfolio %</span>
                   <input
+                    ref={cliInputRef}
                     type="text"
                     value={cliInput}
                     onChange={handleCliChange}
                     onKeyDown={handleKeyDown}
                     className="flex-grow bg-transparent text-white border-none outline-none caret-brand-orange font-mono text-sm md:text-base p-0 focus:ring-0"
                     placeholder="type 'help'..."
-                    autoFocus
                   />
                 </div>
                 <div ref={cliBottomRef} />

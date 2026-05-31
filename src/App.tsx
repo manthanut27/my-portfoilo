@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PerformanceTierProvider } from './context/PerformanceTier';
-import { SoundProvider } from './context/SoundContext';
 import { useIntersectionObserver } from './hooks/useIntersectionObserver';
 import { useKonami } from './hooks/useKonami';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -138,14 +137,12 @@ const MainPortfolio: React.FC = () => {
 export const App: React.FC = () => {
   return (
     <PerformanceTierProvider>
-      <SoundProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<MainPortfolio />} />
-            <Route path="/shadow" element={<ShadowPage />} />
-          </Routes>
-        </Router>
-      </SoundProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainPortfolio />} />
+          <Route path="/shadow" element={<ShadowPage />} />
+        </Routes>
+      </Router>
     </PerformanceTierProvider>
   );
 };
