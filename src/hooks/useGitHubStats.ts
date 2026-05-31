@@ -20,7 +20,9 @@ const fallbackStats: GitHubStats = {
   loading: false,
 };
 
-export const useGitHubStats = (username = 'manthanut27') => {
+const DEFAULT_USERNAME = import.meta.env.VITE_GITHUB_USERNAME || 'manthanut27';
+
+export const useGitHubStats = (username = DEFAULT_USERNAME) => {
   const [stats, setStats] = useState<GitHubStats>({
     publicRepos: 0,
     stars: 0,
