@@ -11,13 +11,14 @@ import { KanjiOverlay } from './components/KanjiOverlay';
 import { HMModeToggle } from './components/HMModeToggle';
 import { KonamiOverlay } from './components/KonamiOverlay';
 import { Hero } from './sections/Hero';
-import { About } from './sections/About';
 import { Skills } from './sections/Skills';
 import { Projects } from './sections/Projects';
-import { Terminal } from './sections/Terminal';
 import { Contact } from './sections/Contact';
 import { Footer } from './sections/Footer';
 import { ShadowPage } from './sections/ShadowPage';
+
+const About = React.lazy(() => import('./sections/About'));
+const Terminal = React.lazy(() => import('./sections/Terminal'));
 
 const MainPortfolio: React.FC = () => {
   const [loaded, setLoaded] = useState(() => {
@@ -93,7 +94,15 @@ const MainPortfolio: React.FC = () => {
           <Hero hiringManagerMode={hiringManagerMode} />
 
           {!hiringManagerMode && <MarqueeStrip />}
-          <About hiringManagerMode={hiringManagerMode} />
+          <React.Suspense fallback={
+            <div className={`w-full min-h-screen flex items-center justify-center font-space text-lg uppercase tracking-widest animate-pulse ${
+              hiringManagerMode ? 'bg-slate-100 text-slate-900' : 'bg-brand-lime text-brand-navy'
+            }`}>
+              Loading creative space...
+            </div>
+          }>
+            <About hiringManagerMode={hiringManagerMode} />
+          </React.Suspense>
 
           {!hiringManagerMode && <MarqueeStrip />}
           <Skills hiringManagerMode={hiringManagerMode} />
@@ -104,7 +113,15 @@ const MainPortfolio: React.FC = () => {
           {!hiringManagerMode && (
             <>
               <MarqueeStrip />
-              <Terminal hiringManagerMode={hiringManagerMode} />
+              <React.Suspense fallback={
+                <div className={`w-full min-h-screen flex items-center justify-center font-mono text-sm uppercase tracking-wider animate-pulse ${
+                  hiringManagerMode ? 'bg-slate-100 text-slate-900' : 'bg-brand-lavender text-brand-navy'
+                }`}>
+                  &gt; loading terminal environment...
+                </div>
+              }>
+                <Terminal hiringManagerMode={hiringManagerMode} />
+              </React.Suspense>
             </>
           )}
 
