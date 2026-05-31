@@ -30,6 +30,7 @@
   --animate-blink: blink 1s step-end infinite;
   --animate-marquee: marquee 25s linear infinite;
   --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-shake: shake 0.4s ease-in-out;
 
   @keyframes spin-reverse {
     from { transform: rotate(360deg); }
@@ -51,6 +52,11 @@
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
   }
 }
 
@@ -216,4 +222,39 @@ body {
   
   background-color: #f8fafc !important;
   color: #0f172a !important;
+}
+
+/* Premium dynamic scrollbar styling */
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(12, 74, 110, 0.04);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(254, 99, 52, 0.35); /* Semi-transparent brand-orange */
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(254, 99, 52, 0.85); /* Vibrant brand-orange on hover */
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Scrollbar support for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(254, 99, 52, 0.35) rgba(12, 74, 110, 0.04);
 }

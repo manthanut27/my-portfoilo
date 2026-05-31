@@ -32,7 +32,7 @@ export const Projects: React.FC<ProjectsProps> = ({ hiringManagerMode }) => {
       desc: "India's premium jewelry e-commerce platform featuring dynamic product galleries, secure checkout, and real-time inventory management.",
       image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJqSrkr-blVDlX-HqAMtgVWLBL_yE--HjGpwbLYv6e0b58ziTzsUEeO9T4iKqnLasMR-ECqRhV6Lx0UJ_uoLT91MSU0lGZGNYRSS7JPXPOy5lZjtcg4nAU_JThBCHXjCNeXC6nJqHvgRpzopKgDI0cRFohcnwUU71SMmOk2x8j5WrAirP5djf3ARtOmsw38pmDQSZWvQbRQqmZesJqoSGyIt6mZIUBWTNjIULtYqu8eGL3IuV5kn1f7oGMDsd6jRAngLDOQos6QOE',
       tech: ['React', 'Node.js', 'Supabase', 'Prisma', 'Razorpay', 'Resend', 'Redis'],
-      liveLink: 'https://evabloom.in',
+      liveLink: import.meta.env.VITE_LIVE_LINK_EVA_BLOOM || 'https://evabloom.in',
       gitLink: import.meta.env.VITE_GITHUB_REPO_EVA_BLOOM || 'https://github.com/manthanut27/eva-bloom',
     },
     {
@@ -42,7 +42,7 @@ export const Projects: React.FC<ProjectsProps> = ({ hiringManagerMode }) => {
       desc: 'Immersive 3D car showcase with interactive configuration, 360-degree rotation, and performance specs visualization using WebGL and R3F.',
       image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDRtINeOCqG1mM8fr76lQr2CjlqlFZNlgd6LpvVspmJRDpL8s2qCs132OdeZbjN1C1Om-VyUZNZ_7BKL8AR71FbfpNNkDF0WqgM7PZ_qxFjGSwCv73QvcMloRcfIB9H9n-GZf2N-r7WSGa-RPycEYMU4O4f0Td-xZjXxyo7Ho8PPr4oRxWY95LN0_Ep1NJd1cWvaQ8pAqR2RlLz61XKZOmHUsLJhjsKBGQ-fG1f5Miv6_HV920SF72i6LpFzlAAyNYpJwHmqwLRgjU',
       tech: ['Next.js', 'R3F', 'GSAP', 'Framer', 'Tailwind'],
-      liveLink: 'https://bmw-m4.manthan.dev',
+      liveLink: import.meta.env.VITE_LIVE_LINK_BMW || 'https://bmw-m4.manthan.dev',
       gitLink: import.meta.env.VITE_GITHUB_REPO_BMW || 'https://github.com/manthanut27/bmw-m4-showcase',
     },
     {

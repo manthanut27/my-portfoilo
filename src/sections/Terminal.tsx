@@ -16,6 +16,11 @@ export const Terminal: React.FC<TerminalProps> = ({ hiringManagerMode }) => {
   const { publicRepos, stars, contributions, loading: statsLoading } = useGitHubStats();
   const { addCommand, getPrevious, getNext } = useCommandHistory();
 
+  const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || 'manthanut27';
+  const linkedinUrlRaw = import.meta.env.VITE_LINKEDIN_URL || 'https://linkedin.com/in/utkmanthan';
+  const linkedinDisplay = linkedinUrlRaw.replace(/^(https?:\/\/)?(www\.)?/, '');
+  const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || 'manthanutekar27@gmail.com';
+
   const [activeTab, setActiveTab] = useState<'cinematic' | 'cli' | 'stats'>('cinematic');
   const [glitchActive, setGlitchActive] = useState(false);
 
@@ -37,7 +42,7 @@ export const Terminal: React.FC<TerminalProps> = ({ hiringManagerMode }) => {
   const cinematicLines = [
     '> initializing portfolio CLI...',
     '> connecting to GitHub API gateway... success',
-    '> fetching user profile data... loaded [manthanut27]',
+    `> fetching user profile data... loaded [${githubUsername}]`,
     '> loading creative assets... React, Node, GSAP, Three.js',
     '// THE STORY',
     'I started coding at 16, curious about how the web worked.',
@@ -184,16 +189,16 @@ export const Terminal: React.FC<TerminalProps> = ({ hiringManagerMode }) => {
       case 'contact':
         output = (
           <div className="flex flex-col gap-1">
-            <div>• EMAIL   : manthanutekar27@gmail.com</div>
-            <div>• GITHUB  : github.com/manthanut27</div>
-            <div>• LINKEDIN: linkedin.com/in/utkmanthan</div>
+            <div>• EMAIL   : {contactEmail}</div>
+            <div>• GITHUB  : github.com/{githubUsername}</div>
+            <div>• LINKEDIN: {linkedinDisplay}</div>
           </div>
         );
         break;
       case 'stats':
         output = statsLoading ? 'Loading metrics...' : (
           <div className="flex flex-col gap-1">
-            <div>GITHUB USER   : manthanut27</div>
+            <div>GITHUB USER   : {githubUsername}</div>
             <div>PUBLIC REPOS  : {publicRepos}</div>
             <div>TOTAL STARS   : {stars}</div>
             <div>COMMITS (2026): {contributions}</div>

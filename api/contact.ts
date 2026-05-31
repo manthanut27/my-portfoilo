@@ -45,7 +45,7 @@ export default async function handler(req: Request) {
     }
 
     const resendKey = process.env.RESEND_API_KEY;
-    const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'manthanutekar27@gmail.com';
+    const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || process.env.VITE_CONTACT_EMAIL || 'manthanut27@gmail.com';
 
     if (!resendKey) {
       console.error('Missing RESEND_API_KEY environment variable.');
@@ -67,19 +67,10 @@ export default async function handler(req: Request) {
         Authorization: `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
-        from: 'portfolio@manthan.dev',
-        to: recipientEmail,
-        reply_to: email,
-        subject: `Portfolio Contact from: ${name}`,
-        html: `
-          <h3>New Message from Portfolio Contact Form</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong></p>
-          <blockquote style="padding: 10px; background-color: #f3f4f6; border-left: 4px solid #FE6334; margin: 0;">
-            ${message.replace(/\n/g, '<br />')}
-          </blockquote>
-        `,
+        from: 'Portfolio Contact <contact@manthanut.site>',
+        to: [recipientEmail],
+        subject: `New message from ${name} via Portfolio`,
+        html: `<h2>New Contact Form Submission</h2><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong></p><p>${message}</p>`
       }),
     });
 
